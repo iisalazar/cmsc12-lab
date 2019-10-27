@@ -1,7 +1,7 @@
 import json
 from .db import DB
 
-from .custom_excemptions import UserNotFoundException, MissingFieldException, UserExistsException
+from .custom_exceptions import UserNotFoundException, MissingFieldException, UserExistsException
 class CreateView(DB):
     def __init__(self):
         super().__init__()
@@ -12,10 +12,8 @@ class CreateView(DB):
         user = self.get_queryset(studentNo)
         if user is not None:
             raise UserExistsException("User with student number {} exists".format(studentNo))
-
-        users = self.read()
-        users['users'].append(data)
-        self.write(users)
+        data['age'] = str(data.get('age'))
+        data = self.append(data)
         return data
 
 class RetrieveView(DB):
@@ -40,8 +38,10 @@ class UpdateView(DB):
         student = self.get_queryset(studentNo)
         if student is None:
             raise UserNotFoundException("Student with student number {} does not exist".format(studentNo))
-
+        student['age'] = str(student['age'])
         for key, value in data.items():
+            if key == 'age':
+                value = value + '\n'
             student[key] = value
         self.writeOne(student)
         return data
@@ -57,11 +57,12 @@ class DeleteView(DB):
         if student is None:
             raise UserNotFoundException("User with student no. {} not found".format(studentNo))
         users  = self.read()
-        for index, user in enumerate(user['users']):
+        for index, user in enumerate(users):
             if user.get('studentNo') == studentNo:
                 indexToPop = index
                 break
-        del users['users'][indexToPop]
+        del users[indexToPop]
+        self.write(users)
         return student
 
 class ListView(DB):

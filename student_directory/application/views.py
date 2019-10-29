@@ -59,9 +59,10 @@ class DeleteView(DB):
         users  = self.read()
         for index, user in enumerate(users):
             if user.get('studentNo') == studentNo:
-                indexToPop = index
+                del users[index]
+                # indexToPop = index
                 break
-        del users[indexToPop]
+        # del users[indexToPop]
         self.write(users)
         return student
 

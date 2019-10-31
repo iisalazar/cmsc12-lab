@@ -1,3 +1,5 @@
+# a custom exception module 
+
 
 # This exception is raised when a user is not found
 class UserNotFoundException(Exception):

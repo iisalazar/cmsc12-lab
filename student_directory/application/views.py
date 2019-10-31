@@ -50,9 +50,10 @@ class DeleteView(DB):
     def __init__(self):
         super().__init__()
 
-    def delete(self, studentNo):
+    def delete(self, studentNo = None):
         if studentNo is None:
-            raise MissingFieldException("Student no. is required")
+            self.clearDB()
+            return
         student = self.get_queryset(studentNo)
         if student is None:
             raise UserNotFoundException("User with student no. {} not found".format(studentNo))

@@ -36,7 +36,8 @@ if __name__ == '__main__':
         "fName" : "Isabela Anne",
         "mName" : "Ventura",
         "sName" : "Magtira",
-        "age" : 21
+        "age" : 21,
+        "degree": "BS Industrial Engineering"
 	}
 	# test create view
 	testCreate = TestCreate(userObj)

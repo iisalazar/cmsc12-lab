@@ -1,3 +1,4 @@
 *.pyc
 ___pycache__/
 *.zip
+node_modules/

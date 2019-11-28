@@ -13,100 +13,96 @@
     <!-- title -->
     <title>This is the text that you see in your browser tab</title>
     <!-- styling -->
-    <style>
-        form {
-            padding: 1em;
-            border: 5px solid #f5f5f5;
-        }
-        fieldset {
-            margin: 10px 0;
-        }
-        
-    </style>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
     <!-- Form Title -->
-    <h1>Order Form</h1>
-    <form id="orderForm">
-        <!-- customer details  -->
-        <fieldset>
-            <legend>Customer Details</legend>
-            <label>
-                Customer Name: <input type="text" name="name" />
-            </label>
-            <br />
-            <label>
-                Mobile Number: <input type="text" name="mobile" />
-            </label>      
-            <br />
-            <label>
-                E-mail address: <input type="text" name="email" />
-            </label>
-        </fieldset>
-        <!-- pizza details  -->
-        <fieldset>
-            <legend>Pizza Options</legend>
-            <label>
-                Flavor:
-                <select name="flavor">
-                    <option value="Hawaiian">Hawaiian</option>
-                    <option value="Peperoni">Peperoni</option>
-                    <option value="Four Cheese">Four Cheese</option>
-                    <option value="All Meat">All Meat</option>
-                </select>
-            </label>
-            <br />
-            <label>
-                Size:
+    <div class="container">
+        <h1 class="text-center">Order Form</h1>
+        <form class="form-container margin-y-3" id="orderForm">
+            <!-- customer details  -->
+            <fieldset>
+                <legend>Customer Details</legend>
+                <label>
+                    Customer Name <span class="text-danger">(required)</span><input type="text" name="name" required />
+                </label>
                 <br />
                 <label>
-                    <input type="radio" name="size" value="Small"> Small
-                </label>
-                <label>
-                    <input type="radio" name="size" value="Medium"> Medium
-                </label>
-                <label>
-                    <input type="radio" name="size" value="Large"> Large
-                </label>
-            </label>      
-            <br />
-            <label>
-                Extra Toppings: 
+                    Mobile Number <span class="text-danger">(required)</span> <input type="number" name="mobile" required />
+                </label>      
                 <br />
-                <label><input type="checkbox" name="toppings" value="Bacon"> Bacon </label>
-                <label><input type="checkbox" name="toppings" value="Cheese"> Cheese </label>
-                <label><input type="checkbox" name="toppings" value="Onion"> Onion </label>
-                <label><input type="checkbox" name="toppings" value="Mushroom"> Mushroom </label>
-            </label>      
-            <br />
-        </fieldset>
-        <!-- Delivery Details -->
-        <fieldset>
-            <legend>Delivery Details</legend>
-            <label>
-                Delivery Date: <input type="date" name="delivery date" />
-            </label>
-            <br />
-            <label>
-                Preferred delivery time: <input type="time" name="delivery time" />
-            </label>      
-            <br />
-            <label>
-                Delivery Address:
-                <br/>
-                <textarea rows="5" cols="50" ></textarea>
-            </label>
-        </fieldset>
-        <input type="reset" value="Reset" />
-        <input type="submit" value="Submit Oder" />
-    </form>
-    <script>
-        window.addEventListener('load', function() {
-            document.getElementById('orderForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                console.log(e)
-            })
-        })
-    </script>
+                <label>
+                    E-mail address <span class="text-danger">(required)</span> <input type="email" name="email" required />
+                </label>
+            </fieldset>
+            <!-- pizza details  -->
+            <fieldset>
+                <legend>Pizza Options</legend>
+                <label>
+                    Flavor <span class="text-danger">(required)</span>
+                    <select name="flavor" id="flavors">
+                        <option value="Hawaiian">Hawaiian</option>
+                        <option value="Peperoni">Peperoni</option>
+                        <option value="Four Cheese">Four Cheese</option>
+                        <option value="All Meat">All Meat</option>
+                    </select>
+                </label>
+                <br />
+                <label>
+                    Size <span class="text-danger">(required)</span>
+                    <br />
+                    <label>
+                        <input type="radio" name="size" value="Small" checked> Small
+                    </label>
+                    <label>
+                        <input type="radio" name="size" value="Medium"> Medium
+                    </label>
+                    <label>
+                        <input type="radio" name="size" value="Large"> Large
+                    </label>
+                </label>      
+                <br />
+                <label>
+                    Extra Toppings <span class="text-danger">(uncheck toppings if you don't want)</span>
+                    <br />
+                    <label><input type="checkbox" name="toppings" value="Bacon" checked> Bacon </label>
+                    <label><input type="checkbox" name="toppings" value="Cheese"> Cheese </label>
+                    <label><input type="checkbox" name="toppings" value="Onion"> Onion </label>
+                    <label><input type="checkbox" name="toppings" value="Mushroom"> Mushroom </label>
+                </label>      
+                <br />
+            </fieldset>
+            <!-- Delivery Details -->
+            <fieldset>
+                <legend>Delivery Details</legend>
+                <label>
+                    Delivery Date <span class="text-danger">(required)</span> 
+                    <input type="date" 
+                        name="delivery date" 
+                        id="delDate" 
+                        required
+                        />
+                </label>
+                <br />
+                <label>
+                    Preferred delivery time <span class="text-danger">(required)</span> 
+                    <input type="time" 
+                        name="delivery time"
+                        id="delTime"
+                        required
+                        />
+                </label>      
+                <br />
+                <label>
+                    Delivery Address <span class="text-danger">(required)</span>
+                    <br/>
+                    <textarea rows="5" cols="50" id="delAddress" required ></textarea>
+                </label>
+            </fieldset>
+            <input class="btn btn-block btn-success" type="submit" value="Submit Oder" />
+            <input class="btn btn-block btn-danger" type="reset" value="Reset" />
+        </form>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
